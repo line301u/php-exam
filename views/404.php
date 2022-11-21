@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h1>Index</h1>
+  Oh noes 😞
 </body>
 
 </html>

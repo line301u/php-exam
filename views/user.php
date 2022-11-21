@@ -9,7 +9,7 @@
 </head>
 
 <body>
-  <h1>Index</h1>
+  <h1>User</h1>
 </body>
 
 </html>
