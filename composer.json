@@ -1,0 +1,8 @@
+{
+  "name": "niklasschjoldager/php-exam",
+  "require": {},
+  "scripts": {
+    "runserver": "surreal start --log trace --user admin --pass password file:database.db",
+    "sql": "surreal sql --conn http://localhost:8000 --user admin --pass password --ns phpexam --db phpexam --pretty"
+  }
+}
