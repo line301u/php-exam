@@ -6,7 +6,7 @@ surreal start --log debug --user root --pass root memory
 Start SurrealDB server - save data in a folder called "data"
 surreal start --log debug --user admin --pass password file:database.db
 SurrealDB client
-surreal sql --conn http://localhost:8000 --user admin --pass password --ns php-exam --db php-exam --pretty
+surreal sql --conn http://localhost:8000 --user admin --pass password --ns phpexam --db phpexam --pretty
 */
 
 function surrealdb($query, $lets = [], $host = 'http://127.0.0.1', $port = 8000)
@@ -24,8 +24,8 @@ function surrealdb($query, $lets = [], $host = 'http://127.0.0.1', $port = 8000)
 
     $headers = [
       'Accept: application/json',
-      'ns: company',
-      'db: company'
+      'ns: phpexam',
+      'db: phpexam'
     ];
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, "http://127.0.0.1:8000/sql");
