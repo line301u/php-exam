@@ -1,0 +1,5 @@
+get("/", "views/index.php");
+
+get("/api-v1/user", api/create_user.php);
+
+get("/api-v2"/)
