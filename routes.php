@@ -4,6 +4,7 @@ require_once __DIR__ . '/router.php';
 
 // Views
 get('/php-exam', 'views/index');
+get('/php-exam/$message', 'views/index');
 get('/php-exam/home', 'views/home');
 get('/php-exam/user/$id', 'views/user');
 get('/php-exam/login', 'views/user');
