@@ -7,16 +7,16 @@ $email = $_POST['email'];
 $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
 try {
-    if (!isset($first_name)) {
+    if (!isset($first_name) or empty($first_name)) {
         header("Location: /php-exam");
     }
-    if (!isset($last_name)) {
+    if (!isset($last_name) or empty($last_name)) {
         header("Location: /php-exam");
     }
-    if (!isset($email)) {
+    if (!isset($email) or empty($email)) {
         header("Location: /php-exam");
     }
-    if (!isset($password)) {
+    if (!isset($password) or empty($password)) {
         header("Location: /php-exam");
     }
 
