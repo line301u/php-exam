@@ -4,32 +4,33 @@ $title = "Home";
 require_once __DIR__ . '/header.php';
 ?>
 
-<section>
-  <h1>Home</h1>
-  <h2>All users</h2>
+<section class="container mt-4">
+  <h1 class="display-1 pb-4 pt-4">Home</h1>
+  <h2 class="mt-4">All users</h2>
 
   <?php
   require_once __DIR__.'/../surrealdb.php';
-
-  $isAdmin = "true";
+  $isAdmin = "true"; // FIX !
 
   try {
     $users = json_decode(surrealdb('SELECT * FROM user'), true)[0]['result'];
 
     foreach($users as $user){ ?>
-      <div class="d-flex">
+      <div class="user d-flex align-items-center border gap-4 mt-4 p-2">
         <?php if (isset($user['image'])): ?>
-          <img src="<?= out($user['image']) ?>" alt="User profile picture">
+          <img class="col-2" style="object-fit:cover;"  src="<?= out($user['image']) ?>" alt="User profile picture">
         <?php else: ?>
-          <img src="./images/fallback-profile-pic.png" alt="User profile picture">
+          <img class="img-fluid rounded col-2" style="object-fit:cover;" src="./images/fallback-profile-pic.png" alt="User profile picture">
         <?php endif ?>
-        <div>
-          <h4><?= $user['first_name'] ?></h4>
-          <h4><?= $user['last_name'] ?></h4>
-          <p><?= $user['email'] ?></p>
+        <div class="col-auto flex-grow-1">
+          <h3 class="h5"><?= $user['first_name'] . " " . $user['last_name']?></h3>
+          <p class="m-0"><?= $user['email'] ?></p>
         </div>
         <?php if ($isAdmin): ?>
-          <a href="/php-exam/user/<?php echo $user['id'] ?>">Delete user</a>
+          <form class="flex-shrink-1">
+            <input class="user_id" name="user_id" type="hidden" value=<?= $user['id']?>>
+            <button type="button" class="btn btn-dark delete_user">Delete user</button>
+          </form>
         <?php endif ?>
       </div>
   <?php }
