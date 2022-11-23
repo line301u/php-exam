@@ -1,15 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require_once __DIR__ . '/../surrealdb.php';
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
+$user = json_decode(surrealdb("SELECT first_name, last_name, email, image FROM user WHERE id = :id", ['id' => $id]), true)[1]['result'][0];
 
-<body>
-  <h1>User</h1>
-</body>
+if (!$user) {
+  header("Location: /php-exam/404");
+  exit();
+}
 
-</html>
+// Destructuring 
+[
+  'first_name' => $firstName,
+  'last_name' => $lastName,
+  'image' => $image,
+  'email' => $email
+] = $user;
+
+$title = "User - {$firstName} {$lastName}";
+require_once __DIR__ . '/header.php';
+?>
+
+<article class="card mx-auto mt-5" style="width: 18rem;">
+  <?php if ($image) : ?>
+    <img class="card-img-top" src="<?= $image ?>" alt="User profile picture">
+  <?php else : ?>
+    <img class="card-img-top" src="../images/fallback-profile-pic.png" alt="User profile picture">
+  <?php endif ?>
+
+  <div class="card-body">
+    <h1 class="card-title"><?= "{$firstName} {$lastName}" ?></h1>
+    <a class="card-text d-block mb-3" href="mailto:<?= $email ?>"><?= $email ?></a>
+    <a href="#" class="btn btn-outline-primary">Edit</a>
+  </div>
+</article>
+
+<?php
+
+require_once __DIR__ . '/footer.php';
+
+?>
