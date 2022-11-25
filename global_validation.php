@@ -26,7 +26,7 @@ function _validate_first_name(string $input_name)
 }
 
 // ##############################
-function _validate_last_name($input_name)
+function _validate_last_name(string $input_name)
 {
     $error_message = $input_name . ' ' . _USER_LAST_NAME_MIN_LEN . ' to ' . _USER_LAST_NAME_MAX_LEN . ' characters';
     if (!isset($_POST[$input_name])) {
@@ -43,7 +43,7 @@ function _validate_last_name($input_name)
 }
 
 // ##############################
-function _validate_password($input_name)
+function _validate_password(string $input_name)
 {
     $error_message = $input_name . ' ' . _USER_PASSWORD_MIN_LEN . ' to ' . _USER_PASSWORD_MAX_LEN . ' characters';
     if (!isset($_POST[$input_name])) {
@@ -60,7 +60,7 @@ function _validate_password($input_name)
 }
 
 // ##############################
-function _validate_email($input_name)
+function _validate_email(string $input_name)
 {
     $error_message = $input_name . ' ' .  'invalid';
     if (!isset($_POST[$input_name])) {
@@ -75,7 +75,7 @@ function _validate_email($input_name)
 
 // ##############################
 
-function _validate_image($input_name)
+function _validate_image(string $input_name)
 {
     if ($_FILES[$input_name]['error'] === UPLOAD_ERR_INI_SIZE) {
         _respond('item_image too large', 400);
