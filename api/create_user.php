@@ -13,11 +13,13 @@ try {
     $ifEmailExists = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
 
     if (empty($ifEmailExists)) {
-        surrealdb('CREATE user SET first_name=:first_name, last_name=:last_name, email=:email, password=:password', ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'password' => $password]);
+        surrealdb('CREATE user SET first_name=:first_name, last_name=:last_name, email=:email, password=:password, is_admin=:is_admin', ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'password' => $password, 'is_admin' => false]);
 
         // Set the user id in session
         $user = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
         $_SESSION["user_id"] = $user['id'];
+        $_SESSION["is_admin"] = $user['is_admin'];
+        $_SESSION["name"] = $user['first_name'] . ' ' . $user['last_name'];
         header("Location: /php-exam/home");
     } else {
         $_SESSION[_SESSION_FORM_ERRORS][$form_name]['email'] = "Email already exists";
