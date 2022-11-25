@@ -11,6 +11,13 @@ require_once __DIR__ . '/header.php';
       <h2>Log in</h2>
       <form action="/php-exam/log-in" method="POST">
 
+        <?php if (isset($_SESSION['form_errors']['log_in']['email_password'])) : ?>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <?= $_SESSION['form_errors']['log_in']['email_password'] ?>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <?php endif ?>
+
         <div class="mb-3">
           <label class="form-label" for="email">Email</label>
           <input class="form-control" type="text" name="email" placeholder="Email address">
@@ -55,4 +62,9 @@ require_once __DIR__ . '/header.php';
   </div>
 </div>
 
-<?php require_once __DIR__ . '/footer.php'; ?>
+<?php
+require_once __DIR__ . '/footer.php';
+if (isset($_SESSION['form_errors'])) {
+  unset($_SESSION['form_errors']);
+}
+?>

@@ -3,6 +3,8 @@ require_once __DIR__ . '/../surrealdb.php';
 require_once __DIR__ . '/../global_validation.php';
 ini_set('display_errors', 1); // Remove later
 
+$form_name = "log_in";
+
 try {
     $email = _validate_email('email');
     $password = _validate_password('password');
@@ -13,13 +15,13 @@ try {
     if (password_verify($password, $password_hashed)) {
         echo 'You are logged in';
 
-        // Set the user id in sesstion
-        $_SESSION['user_id'] = $user['id'];
+        // Set the user id in session
+        $_SESSION["user_id"] = $user['id'];
 
         header('Location: /php-exam/home');
     } else {
-        echo 'Wrong password or email';
-        header('Location: /php-exam');
+        $_SESSION['form_errors'][$form_name]['email_password'] = "Wrong password or email";
+        header("Location: /php-exam");
     }
 } catch (Exception $ex) {
     echo $ex;
