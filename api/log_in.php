@@ -4,8 +4,8 @@ require_once __DIR__ . '/../global_validation.php';
 ini_set('display_errors', 1); // Remove later
 
 try {
-    $email = _validate_user_email();
-    $password = _validate_user_password("password");
+    $email = _validate_email("email");
+    $password = _validate_password("password");
 
     $user = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
     $password_hashed = $user['password'];

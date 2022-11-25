@@ -4,10 +4,10 @@ require_once __DIR__ . '/../global_validation.php';
 
 
 try {
-    $first_name = _validate_user_name("first_name");
-    $last_name = _validate_user_last_name("last_name");
-    $email = _validate_user_email("email");
-    $password = password_hash(_validate_user_password("password"), PASSWORD_DEFAULT);
+    $first_name = _validate_first_name("first_name");
+    $last_name = _validate_last_name("last_name");
+    $email = _validate_email("email");
+    $password = password_hash(_validate_password("password"), PASSWORD_DEFAULT);
 
     $ifEmailExists = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
 
