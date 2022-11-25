@@ -17,7 +17,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
 
 ?>
 
-<section class="container mt-4">
+<section class=" mt-4">
   <h1 class="display-1 pb-4 pt-4">Home</h1>
   <h2 class="mt-4">All users</h2>
 
@@ -30,16 +30,16 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
     foreach ($users as $user) { ?>
       <div class="user d-flex align-items-center border gap-4 mt-4 p-2">
         <a class="col-2" href="<?= "/user/" . $user['id'] ?>">
-          <?php if (isset($user['image'])): ?>
-            <img style="object-fit:cover;"  src="<?= out($user['image']) ?>" alt="User profile picture">
-          <?php else: ?>
+          <?php if (isset($user['image'])) : ?>
+            <img style="object-fit:cover;" src="<?= out($user['image']) ?>" alt="User profile picture">
+          <?php else : ?>
             <img class="img-fluid rounded" style="object-fit:cover;" src="./images/fallback-profile-pic.png" alt="User profile picture">
           <?php endif ?>
         </a>
-          <div class="col-auto flex-grow-1">
-            <a class="col-2 text-reset text-decoration-none" href="<?= "/user/" . $user['id'] ?>">
-              <h3 class="h5"><?= $user['first_name'] . " " . $user['last_name']?></h3>
-            </a>
+        <div class="col-auto flex-grow-1">
+          <a class="col-2 text-reset text-decoration-none" href="<?= "/user/" . $user['id'] ?>">
+            <h3 class="h5"><?= $user['first_name'] . " " . $user['last_name'] ?></h3>
+          </a>
           <p class="m-0"><?= $user['email'] ?></p>
         </div>
         <?php if ($isAdmin) : ?>

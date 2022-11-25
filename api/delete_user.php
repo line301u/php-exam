@@ -17,7 +17,17 @@ if (!isset($id)) {
 if ($isAdmin) {
     try {
         surrealdb("DELETE :id", ['id' => $id]);
-        header("Location: /home");
+        header("Location: /php-exam/home");
+        exit();
+    } catch (Exception $ex) {
+        echo $ex;
+    }
+}
+
+if ($id == $_SESSION['user_id']) {
+    try {
+        surrealdb("DELETE :id", ['id' => $id]);
+        header("Location: /php-exam");
         exit();
     } catch (Exception $ex) {
         echo $ex;

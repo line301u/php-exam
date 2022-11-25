@@ -9,7 +9,7 @@ if (isset($_SESSION['user_id'])) {
 }
 ?>
 
-<div class="container py-5" style="max-width:992px;">
+<div class=" py-5" style="max-width:992px;">
   <div class="row">
 
     <section class="col-md-6 py-3">
