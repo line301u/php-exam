@@ -19,8 +19,6 @@ require_once __DIR__ . '/header.php';
 
 ?>
 
-<a href="/home">Go back</a>
-
 <?php
 
 if ($id == $_SESSION['user_id']) {
@@ -32,8 +30,6 @@ if ($id == $_SESSION['user_id']) {
 <?php
 }
 
-
-
 // Array destructuring 
 [
   'id' => $id,
@@ -44,7 +40,9 @@ if ($id == $_SESSION['user_id']) {
 ] = $user;
 
 ?>
-<article class="card mx-auto mt-4" style="width: 18rem;">
+<a class="mt-4 link-dark" href="/home">Go back</a>
+
+<article class="card mx-auto" style="width: 18rem;">
   <?php if ($image) : ?>
     <img class="card-img-top" style="object-fit:cover; max-height:200px" src="../images/<?= $image ?>" alt="User profile picture">
   <?php else : ?>
@@ -53,7 +51,7 @@ if ($id == $_SESSION['user_id']) {
 
   <div class="card-body">
     <h1 class="card-title"><?= "{$firstName} {$lastName}" ?></h1>
-    <a class="card-text d-block mb-3" href="mailto:<?= $email ?>"><?= $email ?></a>
+    <a class="card-text d-block mb-3 link-dark" href="mailto:<?= $email ?>"><?= $email ?></a>
 
     <h2 class="h5 mt-4 pt-3 border-top">Edit your profile</h2>
     <form class="d-flex flex-column" action="/update-user" method="POST">
