@@ -6,33 +6,32 @@ $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
 $email = $_POST['email'];
 $id = $_POST['id'];
-$image = $_POST['image'];
+$loggedInUser = $_SESSION['user_id'];
 
-$user_db = json_decode(surrealdb("SELECT first_name, last_name, email, id, image FROM user WHERE id = :id", ['id' => $id]), true)[1]['result'][0];
+if (!isset($id)) {
+    header("Location: /404.php");
+    exit();
+}
 
-// Array destructuring 
-[
-'id_db' => $id,
-'first_name_db' => $firstName,
-'last_name_db' => $lastName,
-'image_db' => $image,
-'email_db' => $email
-] = $user_db;
+$lets = [
+    'id' => $id,
+    'first_name' => $first_name,
+    'last_name' => $last_name,
+    'email' => $email,
+    'image' => $image 
+];
 
-$query = <<<QUERY
-UPDATE id: MERGE {
-	name: 'Tobie',
-	company: 'SurrealDB',
-	skills: ['Rust', 'Go', 'JavaScript'],
-}; 
-QUERY;
-
-$updated_user = surrealdb("UPDATE user WHERE id = :id SET first_name = 'x', last_name = 'xx'", ['id' => $id]);
-echo $updated_user;
-
-
-// UPDATE person MERGE {
-// 	settings: {
-// 		marketing: true,
-// 	},
-// };
+$image = _validate_image($_POST['image']);
+// if ($id === $loggedInUser){
+//     try {
+        
+//         $updated_user = surrealdb("UPDATE :id SET first_name = :first_name, last_name = :last_name, email = :email, image = :image", $lets);
+//         header("Location: /user/$id");
+//         exit();
+//     } catch (Exception $ex) {
+//         echo $ex;
+//         exit();
+//     }
+// } else {
+//     header("Location: /user/$id");
+// }

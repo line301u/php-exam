@@ -22,10 +22,10 @@ try {
 
         echo ' is admin: ' . $user['is_admin'];
 
-        header('Location: /php-exam/home');
+        header('Location: /home');
     } else {
-        $_SESSION['form_errors'][$form_name]['email_password'] = 'Wrong password or email';
-        header('Location: /php-exam');
+        $_SESSION['form_errors'][$form_name]['email_password'] = "Wrong password or email";
+        header("Location: /");
     }
 } catch (Exception $ex) {
     echo $ex;

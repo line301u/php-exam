@@ -14,7 +14,7 @@ if (isset($_SESSION['user_id'])) {
 
     <section class="col-md-6 py-3">
       <h2>Log in</h2>
-      <form action="/php-exam/log-in" method="POST">
+      <form action="/log-in" method="POST">
 
         <?php if (isset($_SESSION['form_errors']['log_in']['email_password'])) : ?>
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -40,7 +40,7 @@ if (isset($_SESSION['user_id'])) {
 
     <section class="col-md-6 py-3">
       <h2>Not a member? Sign up!</h2>
-      <form action="/php-exam/create-user" method="POST">
+      <form action="/create-user" method="POST">
         <div class="mb-3">
           <label class="form-label" for="first_name">First name</label>
           <input class="form-control" type="text" name="first_name" placeholder="First name">
