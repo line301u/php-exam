@@ -14,6 +14,25 @@ if (!$user) {
   exit();
 }
 
+$title = "User - {$firstName} {$lastName}";
+require_once __DIR__ . '/header.php';
+
+?>
+
+<a href="/php-exam/home">Go back</a>
+
+<?php
+
+if ($id == $_SESSION['user_id']) {
+?>
+  <form action="/php-exam/delete-user" method="POST" class="flex-shrink-1 pt-4 d-flex align-items-center gap-3">
+    <input class="id" name="id" type="hidden" value=<?= $id ?>>
+    <button type="submit" class="btn btn-outline-danger delete_user">Delete user</button>
+  </form>
+<?php
+}
+
+
 
 // Array destructuring 
 [
@@ -24,8 +43,6 @@ if (!$user) {
   'email' => $email
 ] = $user;
 
-$title = "User - {$firstName} {$lastName}";
-require_once __DIR__ . '/header.php';
 ?>
 <article class="card mx-auto mt-4" style="width: 18rem;">
   <?php if ($image) : ?>
@@ -37,7 +54,7 @@ require_once __DIR__ . '/header.php';
   <div class="card-body">
     <h1 class="card-title"><?= "{$firstName} {$lastName}" ?></h1>
     <a class="card-text d-block mb-3" href="mailto:<?= $email ?>"><?= $email ?></a>
-    
+
     <h2 class="h5 mt-4 pt-3 border-top">Edit your profile</h2>
     <form class="d-flex flex-column" action="/update-user" method="POST">
       <input type="hidden" name="id" value=<?= "{$id}" ?>>
@@ -58,6 +75,8 @@ require_once __DIR__ . '/header.php';
     </form>
   </div>
 </article>
+
+
 
 <?php
 

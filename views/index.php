@@ -2,9 +2,14 @@
 ini_set('display_errors', 1); // Remove later
 $title = "Welcome";
 require_once __DIR__ . '/header.php';
+
+// check if user is logged in (if session is set)
+if (isset($_SESSION['user_id'])) {
+  header('Location: /php-exam/home');
+}
 ?>
 
-<div class="container py-5" style="max-width:992px;">
+<div class=" py-5" style="max-width:992px;">
   <div class="row">
 
     <section class="col-md-6 py-3">
