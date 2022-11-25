@@ -1,12 +1,18 @@
 <?php
 require_once __DIR__ . '/../surrealdb.php';
 
+// check if user is logged in (if session is set)
+if (!isset($_SESSION['user_id'])) {
+  header('Location: /php-exam');
+}
+
 $user = json_decode(surrealdb("SELECT first_name, last_name, email, image FROM user WHERE id = :id", ['id' => $id]), true)[1]['result'][0];
 
 if (!$user) {
   header("Location: /php-exam/404");
   exit();
 }
+
 
 // Array destructuring 
 [

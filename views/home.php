@@ -2,11 +2,16 @@
 ini_set('display_errors', 1);
 $title = "Home";
 require_once __DIR__ . '/header.php';
-print_r($_SESSION);
+
+// check if user is logged in (if session is set)
+if (!isset($_SESSION['user_id'])) {
+  header('Location: /php-exam');
+}
 ?>
 
-<a href="/php-exam/log-out">Log out</a>
+
 <section class="container mt-4">
+  <a href="/php-exam/log-out" class="btn btn-outline-dark">Log out</a>
   <h1 class="display-1 pb-4 pt-4">Home</h1>
   <h2 class="mt-4">All users</h2>
 
