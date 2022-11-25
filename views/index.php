@@ -7,7 +7,7 @@ require_once __DIR__ . '/header.php';
 <div class="container py-5" style="max-width:992px;">
   <div class="row">
 
-    <section class="col-md-6">
+    <section class="col-md-6 py-3">
       <h2>Log in</h2>
       <form action="/php-exam/log-in" method="POST">
 
@@ -26,7 +26,7 @@ require_once __DIR__ . '/header.php';
 
     </section>
 
-    <section class="col-md-6">
+    <section class="col-md-6 py-3">
       <h2>Not a member? Sign up!</h2>
       <form action="/php-exam/create-user" method="POST">
         <div class="mb-3">
