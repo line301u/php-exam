@@ -19,6 +19,7 @@ try {
         $user = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
         $_SESSION["user_id"] = $user['id'];
         $_SESSION["is_admin"] = $user['is_admin'];
+        $_SESSION["name"] = $user['first_name'] . ' ' . $user['last_name'];
         header("Location: /php-exam/home");
     } else {
         echo "EMAIL ALREADY EXISTS";

@@ -29,7 +29,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
 
     foreach ($users as $user) { ?>
       <div class="user d-flex align-items-center border gap-4 mt-4 p-2">
-        <a class="col-2" href="<?= "/user/" . $user['id'] ?>">
+        <a class="col-2" href="<?= "/php-exam/user/" . $user['id'] ?>">
           <?php if (isset($user['image'])) : ?>
             <img style="object-fit:cover;" src="<?= out($user['image']) ?>" alt="User profile picture">
           <?php else : ?>
@@ -37,7 +37,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
           <?php endif ?>
         </a>
         <div class="col-auto flex-grow-1">
-          <a class="col-2 text-reset text-decoration-none" href="<?= "/user/" . $user['id'] ?>">
+          <a class="col-2 text-reset text-decoration-none" href="<?= "/php-exam/user/" . $user['id'] ?>">
             <h3 class="h5"><?= $user['first_name'] . " " . $user['last_name'] ?></h3>
           </a>
           <p class="m-0"><?= $user['email'] ?></p>

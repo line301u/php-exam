@@ -17,13 +17,13 @@ require_once __DIR__ . '/header.php';
 
 ?>
 
-<a href="/php-exam/home">Go back</a>
+<a href="/php-exam/home" class="link-dark p-2">Go back</a>
 
 <?php
 
 if ($id == $_SESSION['user_id']) {
 ?>
-  <form action="/php-exam/delete-user" method="POST" class="flex-shrink-1 pt-4 d-flex align-items-center gap-3">
+  <form action="/php-exam/delete-user" method="POST" class="flex-shrink-1 pt-4 d-flex align-items-center gap-3 justify-content-end">
     <input class="id" name="id" type="hidden" value=<?= $id ?>>
     <button type="submit" class="btn btn-outline-danger delete_user">Delete user</button>
   </form>
