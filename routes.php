@@ -11,7 +11,5 @@ get('/php-exam/log-out', 'api/log_out');
 // API
 post('/php-exam/log-in', 'api/log_in');
 post('/php-exam/create-user', 'api/create_user');
-put('/php-exam/user/$id', 'api/update_user');
-delete('/php-exam/user/$id', 'api/delete_user');
 
 any('/404', 'views/404');

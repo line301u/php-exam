@@ -40,6 +40,15 @@ require_once __DIR__ . '/header.php';
   </div>
 </article>
 
+<?php if ($id == $_SESSION['user_id']) { ?>
+  <form action="/php-exam/delete-user" method="POST" class="flex-shrink-1">
+    <input class="id" name="id" type="hidden" value=<?= $id ?>>
+    <button type="submit" class="btn btn-outline-danger delete_user">Delete user</button>
+  </form>
+<?php
+}
+?>
+
 <?php
 
 require_once __DIR__ . '/footer.php';

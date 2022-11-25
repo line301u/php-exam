@@ -11,3 +11,13 @@
 </head>
 
 <body class="position-relative min-vh-100">
+
+    <?php
+    if (isset($_SESSION['name'])) { ?>
+        <section class="container pt-4 d-flex align-items-center gap-3">
+            <a href="/php-exam/log-out" class="btn btn-outline-dark">Log out</a>
+            <p class="m-0"><?= out('Welcome ' . $_SESSION['name']); ?></p>
+        </section>
+    <?php
+    }
+    ?>

@@ -18,7 +18,6 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
 ?>
 
 <section class="container mt-4">
-  <a href="/php-exam/log-out" class="btn btn-outline-dark">Log out</a>
   <h1 class="display-1 pb-4 pt-4">Home</h1>
   <h2 class="mt-4">All users</h2>
 
