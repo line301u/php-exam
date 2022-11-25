@@ -12,6 +12,6 @@ get('/login', 'views/user');
 post('/log_in', 'api/log_in');
 post('/create-user', 'api/create_user');
 post('/delete-user', 'api/delete_user');
-put('/user/$id', 'api/update_user');
+post('/update-user', 'api/update_user');
 
 any('/404', 'views/404');
