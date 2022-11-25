@@ -8,7 +8,7 @@ if (!$user) {
   exit();
 }
 
-// Destructuring 
+// Array destructuring 
 [
   'first_name' => $firstName,
   'last_name' => $lastName,
