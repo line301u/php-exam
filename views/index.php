@@ -23,9 +23,7 @@ require_once __DIR__ . '/header.php';
 
         <button class="btn btn-outline-dark">Log in</button>
       </form>
-      <?php if ($message) {
-        out($message);
-      } ?>
+
     </section>
 
     <section class="col-md-6">

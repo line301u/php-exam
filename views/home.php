@@ -2,6 +2,7 @@
 ini_set('display_errors', 1); // Remove later
 $title = "Home";
 require_once __DIR__ . '/header.php';
+print_r($_SESSION);
 ?>
 
 <section class="container mt-4">

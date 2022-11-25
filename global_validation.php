@@ -63,14 +63,16 @@ function _validate_user_password($password)
 function _validate_user_email()
 {
     $error_message = 'user_email invalid';
-    if (!isset($_POST['user_email'])) {
+    if (!isset($_POST['email'])) {
+        $error_message = 'lort1';
         _respond($error_message, 400);
     }
-    $_POST['user_email'] = trim($_POST['user_email']);
-    if (!preg_match('/' . _REGEX_EMAIL . '/', $_POST['user_email'])) {
+    $_POST['email'] = trim($_POST['email']);
+    if (!preg_match('/' . _REGEX_EMAIL . '/', $_POST['email'])) {
+        $error_message = 'lort2';
         _respond($error_message, 400);
     }
-    return $_POST['user_email'];
+    return $_POST['email'];
 }
 
 // ##############################
