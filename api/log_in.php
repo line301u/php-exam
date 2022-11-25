@@ -17,6 +17,9 @@ try {
 
         // Set the user id in session
         $_SESSION["user_id"] = $user['id'];
+        $_SESSION["is_admin"] = $user['is_admin'];
+
+        echo " is admin: " . $user['is_admin'];
 
         header('Location: /php-exam/home');
     } else {
