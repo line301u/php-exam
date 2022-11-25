@@ -7,68 +7,105 @@ define('_USER_LAST_NAME_MAX_LEN', 20);
 define('_USER_PASSWORD_MIN_LEN', 6);
 define('_USER_PASSWORD_MAX_LEN', 50);
 define('_REGEX_EMAIL', '^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$');
+define('_SESSION_FORM_ERRORS', 'form_errors');
 
 // ##############################
-function _validate_first_name(string $input_name)
+function _validate_first_name(string $input_name, string $form_name, string $error_message_name = 'first_name', $error_message = null)
 {
-    $error_message = $input_name . ' ' . _USER_FIRST_NAME_MIN_LEN . ' to ' . _USER_FIRST_NAME_MAX_LEN . ' characters';
+    $default_error_message = 'First name ' . _USER_FIRST_NAME_MIN_LEN . ' to ' . _USER_FIRST_NAME_MAX_LEN . ' characters';
+
+    if (is_null($error_message)) {
+        $error_message = $default_error_message;
+    }
+
     if (!isset($_POST[$input_name])) {
-        _respond($error_message, 400);
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
+
     $_POST[$input_name] = trim($_POST[$input_name]);
-    if (strlen($_POST[$input_name]) < _USER_FIRST_NAME_MIN_LEN) {
-        _respond($error_message);
+
+    if (strlen($_POST[$input_name]) < _USER_FIRST_NAME_MIN_LEN || strlen($_POST[$input_name]) > _USER_FIRST_NAME_MAX_LEN) {
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
-    if (strlen($_POST[$input_name]) > _USER_FIRST_NAME_MAX_LEN) {
-        _respond($error_message);
-    }
+
     return $_POST[$input_name];
 }
 
 // ##############################
-function _validate_last_name(string $input_name)
+function _validate_last_name(string $input_name, string $form_name, string $error_message_name = 'last_name', $error_message = null)
 {
-    $error_message = $input_name . ' ' . _USER_LAST_NAME_MIN_LEN . ' to ' . _USER_LAST_NAME_MAX_LEN . ' characters';
+    $default_error_message = 'Last name ' . _USER_LAST_NAME_MIN_LEN . ' to ' . _USER_LAST_NAME_MAX_LEN . ' characters';
+
+    if (is_null($error_message)) {
+        $error_message = $default_error_message;
+    }
+
     if (!isset($_POST[$input_name])) {
-        _respond($error_message, 400);
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
+
     $_POST[$input_name] = trim($_POST[$input_name]);
-    if (strlen($_POST[$input_name]) < _USER_LAST_NAME_MIN_LEN) {
-        _respond($error_message);
+
+    if (strlen($_POST[$input_name]) < _USER_LAST_NAME_MIN_LEN || strlen($_POST[$input_name]) > _USER_LAST_NAME_MAX_LEN) {
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
-    if (strlen($_POST[$input_name]) > _USER_LAST_NAME_MAX_LEN) {
-        _respond($error_message);
-    }
+
     return $_POST[$input_name];
 }
 
 // ##############################
-function _validate_password(string $input_name)
+function _validate_password(string $input_name, string $form_name, string $error_message_name = 'password', $error_message = null)
 {
-    $error_message = $input_name . ' ' . _USER_PASSWORD_MIN_LEN . ' to ' . _USER_PASSWORD_MAX_LEN . ' characters';
+    $default_error_message = 'Password ' . _USER_PASSWORD_MIN_LEN . ' to ' . _USER_PASSWORD_MAX_LEN . ' characters';
+
+    if (is_null($error_message)) {
+        $error_message = $default_error_message;
+    }
+
     if (!isset($_POST[$input_name])) {
-        _respond($error_message, 400);
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
+
     $_POST[$input_name] = trim($_POST[$input_name]);
-    if (strlen($_POST[$input_name]) < _USER_PASSWORD_MIN_LEN) {
-        _respond($error_message);
+
+    if (strlen($_POST[$input_name]) < _USER_PASSWORD_MIN_LEN || strlen($_POST[$input_name]) > _USER_PASSWORD_MAX_LEN) {
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
-    if (strlen($_POST[$input_name]) > _USER_PASSWORD_MAX_LEN) {
-        _respond($error_message);
-    }
+
     return $_POST[$input_name];
 }
 
 // ##############################
-function _validate_email(string $input_name)
+function _validate_email(string $input_name, string $form_name, string $error_message_name = 'email', $error_message = null)
 {
-    $error_message = $input_name . ' ' .  'invalid';
+    $default_error_message = "Invalid {$input_name}";
+
+    if (is_null($error_message)) {
+        $error_message = $default_error_message;
+    }
+
     if (!isset($_POST[$input_name])) {
-        _respond($error_message, 400);
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
     $_POST[$input_name] = trim($_POST[$input_name]);
     if (!preg_match('/' . _REGEX_EMAIL . '/', $_POST[$input_name])) {
-        _respond($error_message, 400);
+        $_SESSION[_SESSION_FORM_ERRORS][$form_name][$error_message_name] = ucfirst($error_message);
+        header("Location: {$_SERVER['HTTP_REFERER']}");
+        exit();
     }
     return $_POST[$input_name];
 }

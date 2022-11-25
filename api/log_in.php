@@ -6,8 +6,8 @@ ini_set('display_errors', 1); // Remove later
 $form_name = "log_in";
 
 try {
-    $email = _validate_email('email');
-    $password = _validate_password('password');
+    $email = _validate_email('email', $form_name, "email_password", "Wrong password or email");
+    $password = _validate_password('password', $form_name, "email_password", "Wrong password or email");
 
     $user = json_decode(surrealdb('SELECT * FROM user WHERE email=:email', ['email' => $email]), true)[1]['result'][0];
     $password_hashed = $user['password'];
