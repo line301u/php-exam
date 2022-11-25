@@ -18,9 +18,9 @@ try {
         // Set the user id in session
         $user = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
         $_SESSION["user_id"] = $user['id'];
-        // header("Location: /php-exam/home");
+        header("Location: /php-exam/home");
     } else {
-        echo "EMAIL EXISTS";
+        echo "EMAIL ALREADY EXISTS";
     }
 } catch (Exception $ex) {
     echo $ex;

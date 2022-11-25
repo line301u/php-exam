@@ -6,11 +6,10 @@ ini_set('display_errors', 1); // Remove later
 $form_name = "log_in";
 
 try {
-    $errors = [];
-    $email = _validate_email("email");
-    $password = _validate_password("password");
+    $email = _validate_email('email');
+    $password = _validate_password('password');
 
-    $user = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
+    $user = json_decode(surrealdb('SELECT * FROM user WHERE email=:email', ['email' => $email]), true)[1]['result'][0];
     $password_hashed = $user['password'];
 
     if (password_verify($password, $password_hashed)) {
@@ -19,7 +18,7 @@ try {
         // Set the user id in session
         $_SESSION["user_id"] = $user['id'];
 
-        header("Location: /php-exam/home");
+        header('Location: /php-exam/home');
     } else {
         $_SESSION['form_errors'][$form_name]['email_password'] = "Wrong password or email";
         header("Location: /php-exam");
