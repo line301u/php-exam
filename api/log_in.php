@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../surrealdb.php';
 require_once __DIR__ . '/../global_validation.php';
-ini_set('display_errors', 1);
+ini_set('display_errors', 1); // Remove later
 
 $email = $_POST['email'];
 $password = $_POST['password'];
