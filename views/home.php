@@ -32,7 +32,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
       <div class="user d-flex align-items-center border gap-4 mt-4 p-2">
         <a class="col-2" href="<?= "/user/" . $user['id'] ?>">
           <?php if (isset($user['image'])): ?>
-            <img style="object-fit:cover;"  src="./images/<?= $user['image'] ?>" alt="User profile picture">
+            <img class="w-100 h-100" style="object-fit:cover;" src="./images/<?= $user['image'] ?>" alt="User profile picture">
           <?php else: ?>
             <img class="img-fluid rounded" style="object-fit:cover;" src="./images/fallback-profile-pic.png" alt="User profile picture">
           <?php endif ?>

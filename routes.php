@@ -9,8 +9,9 @@ get('/user/$id', 'views/user');
 get('/log-out', 'api/log_out');
 
 // API
-post('/php-exam/log-in', 'api/log_in');
-post('/php-exam/create-user', 'api/create_user');
-post('/php-exam/delete-user', 'api/delete_user');
+post('/log-in', 'api/log_in');
+post('/create-user', 'api/create_user');
+post('/delete-user', 'api/delete_user');
+post('/update-user', 'api/update_user');
 
 any('/404', 'views/404');

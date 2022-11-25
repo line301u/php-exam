@@ -19,13 +19,13 @@ require_once __DIR__ . '/header.php';
 
 ?>
 
-<a href="/php-exam/home">Go back</a>
+<a href="/home">Go back</a>
 
 <?php
 
 if ($id == $_SESSION['user_id']) {
 ?>
-  <form action="/php-exam/delete-user" method="POST" class="flex-shrink-1 pt-4 d-flex align-items-center gap-3">
+  <form action="/delete-user" method="POST" class="flex-shrink-1 pt-4 d-flex align-items-center gap-3">
     <input class="id" name="id" type="hidden" value=<?= $id ?>>
     <button type="submit" class="btn btn-outline-danger delete_user">Delete user</button>
   </form>
@@ -46,9 +46,9 @@ if ($id == $_SESSION['user_id']) {
 ?>
 <article class="card mx-auto mt-4" style="width: 18rem;">
   <?php if ($image) : ?>
-    <img class="card-img-top" src="<?= $image ?>" alt="User profile picture">
+    <img class="card-img-top" style="object-fit:cover; max-height:200px" src="../images/<?= $image ?>" alt="User profile picture">
   <?php else : ?>
-    <img class="card-img-top" src="../images/fallback-profile-pic.png" alt="User profile picture">
+    <img class="card-img-top mh-100" src="../images/fallback-profile-pic.png" alt="User profile picture">
   <?php endif ?>
 
   <div class="card-body">
@@ -68,7 +68,6 @@ if ($id == $_SESSION['user_id']) {
         <input class="form-control d-inline" type="text" name="email" value=<?= "{$email}" ?>>
       </label>
       <label class="mb-4 d-block form-label">Profile picture
-        <h1><?= $image ?></h1>
         <input class="form-control" type="file" name="image" value=<?= $image ? $image : 'fallback-profile-pic.png' ?>>
       </label>
       <button type="submit" class="btn btn-dark d-inline align-self-end">Edit</button>
