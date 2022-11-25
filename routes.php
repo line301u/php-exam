@@ -3,15 +3,15 @@
 require_once __DIR__ . '/router.php';
 
 // Views
-get('/php-exam', 'views/index');
-get('/php-exam/home', 'views/home');
-get('/php-exam/user/$id', 'views/user');
-get('/php-exam/login', 'views/user');
+get('/', 'views/index');
+get('/home', 'views/home');
+get('/user/$id', 'views/user');
+get('/login', 'views/user');
 
 // API
-post('/php-exam/log-in', 'api/log_in');
-post('/php-exam/create-user', 'api/create_user');
-put('/php-exam/user/$id', 'api/update_user');
-delete('/php-exam/user/$id', 'api/delete_user');
+post('/log_in', 'api/log_in');
+post('/create-user', 'api/create_user');
+post('/delete-user', 'api/delete_user');
+put('/user/$id', 'api/update_user');
 
-any('/php-exam/404', 'views/404');
+any('/404', 'views/404');
