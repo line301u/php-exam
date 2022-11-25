@@ -38,7 +38,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
           <?php endif ?>
         </a>
         <div class="col-auto flex-grow-1">
-          <a class="col-2 text-reset text-decoration-none" href="<?= "/user/" . $user['id'] ?>">
+          <a class="col-2 text-reset text-decoration-none" href="<?= "/php-exam/user/" . $user['id'] ?>">
             <h3 class="h5"><?= $user['first_name'] . " " . $user['last_name'] ?></h3>
           </a>
           <p class="m-0"><?= $user['email'] ?></p>
