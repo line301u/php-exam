@@ -7,7 +7,7 @@ require_once __DIR__ . '/../surrealdb.php';
 
 // check if user is logged in (if session is set)
 if (!isset($_SESSION['user_id'])) {
-  header('Location: /php-exam');
+  header('Location: /');
 }
 
 // Check if user is admin
@@ -18,7 +18,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
 ?>
 
 <section class="container mt-4">
-  <a href="/php-exam/log-out" class="btn btn-outline-dark">Log out</a>
+  <a href="/log-out" class="btn btn-outline-dark">Log out</a>
   <h1 class="display-1 pb-4 pt-4">Home</h1>
   <h2 class="mt-4">All users</h2>
 
@@ -32,7 +32,7 @@ if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
       <div class="user d-flex align-items-center border gap-4 mt-4 p-2">
         <a class="col-2" href="<?= "/user/" . $user['id'] ?>">
           <?php if (isset($user['image'])): ?>
-            <img style="object-fit:cover;"  src="<?= out($user['image']) ?>" alt="User profile picture">
+            <img style="object-fit:cover;"  src="./images/<?= $user['image'] ?>" alt="User profile picture">
           <?php else: ?>
             <img class="img-fluid rounded" style="object-fit:cover;" src="./images/fallback-profile-pic.png" alt="User profile picture">
           <?php endif ?>

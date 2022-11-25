@@ -1,15 +1,16 @@
 <?php
 require_once __DIR__ . '/../surrealdb.php';
+require_once __DIR__ . '/../global_validation.php';
 
 // check if user is logged in (if session is set)
 if (!isset($_SESSION['user_id'])) {
-  header('Location: /php-exam');
+  header('Location: /');
 }
 
-$user = json_decode(surrealdb("SELECT first_name, last_name, email, image FROM user WHERE id = :id", ['id' => $id]), true)[1]['result'][0];
+$user = json_decode(surrealdb("SELECT first_name, last_name, email, id, image FROM user WHERE id = :id", ['id' => $id]), true)[1]['result'][0];
 
 if (!$user) {
-  header("Location: /php-exam/404");
+  header("Location: /404");
   exit();
 }
 
@@ -26,7 +27,6 @@ if (!$user) {
 $title = "User - {$firstName} {$lastName}";
 require_once __DIR__ . '/header.php';
 ?>
-
 <article class="card mx-auto mt-4" style="width: 18rem;">
   <?php if ($image) : ?>
     <img class="card-img-top" src="<?= $image ?>" alt="User profile picture">
@@ -51,7 +51,8 @@ require_once __DIR__ . '/header.php';
         <input class="form-control d-inline" type="text" name="email" value=<?= "{$email}" ?>>
       </label>
       <label class="mb-4 d-block form-label">Profile picture
-        <input class="form-control" type="file" name="image" >
+        <h1><?= $image ?></h1>
+        <input class="form-control" type="file" name="image" value=<?= $image ? $image : 'fallback-profile-pic.png' ?>>
       </label>
       <button type="submit" class="btn btn-dark d-inline align-self-end">Edit</button>
     </form>
