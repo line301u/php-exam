@@ -43,20 +43,20 @@ function _validate_user_last_name()
 }
 
 // ##############################
-function _validate_user_password()
+function _validate_user_password($password)
 {
-    $error_message = 'user_password ' . _USER_PASSWORD_MIN_LEN . ' to ' . _USER_PASSWORD_MAX_LEN . ' characters';
-    if (!isset($_POST['user_password'])) {
+    $error_message = $password . ' ' . _USER_PASSWORD_MIN_LEN . ' to ' . _USER_PASSWORD_MAX_LEN . ' characters';
+    if (!isset($_POST[$password])) {
         _respond($error_message, 400);
     }
-    $_POST['user_password'] = trim($_POST['user_password']);
-    if (strlen($_POST['user_password']) < _USER_PASSWORD_MIN_LEN) {
+    $_POST[$password] = trim($_POST[$password]);
+    if (strlen($_POST[$password]) < _USER_PASSWORD_MIN_LEN) {
         _respond($error_message);
     }
-    if (strlen($_POST['user_password']) > _USER_PASSWORD_MAX_LEN) {
+    if (strlen($_POST[$password]) > _USER_PASSWORD_MAX_LEN) {
         _respond($error_message);
     }
-    return $_POST['user_password'];
+    return $_POST[$password];
 }
 
 // ##############################
