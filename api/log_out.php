@@ -7,7 +7,7 @@ try {
     echo "You logged out";
 
     session_destroy();
-    header("Location: /");
+    header("Location: /php-exam");
 } catch (Exception $ex) {
     echo $ex;
 }

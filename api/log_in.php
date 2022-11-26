@@ -22,7 +22,7 @@ try {
 
         echo ' is admin: ' . $user['is_admin'];
 
-        header('Location: /home');
+        header('Location: /php-exam/home');
     } else {
         $_SESSION['form_errors'][$form_name]['email_password'] = "Wrong password or email";
         header("Location: /");
