@@ -1,13 +1,7 @@
 <?php
 require_once __DIR__ . '/../surrealdb.php';
 require_once __DIR__ . '/../global_validation.php';
-ini_set('display_errors', 1); // Remove later
+require_once __DIR__ . '/../classes/User.php';
 
-try {
-    echo "You logged out";
-
-    session_destroy();
-    header("Location: /php-exam");
-} catch (Exception $ex) {
-    echo $ex;
-}
+$user = new User();
+$user->logOut();
