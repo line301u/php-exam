@@ -45,9 +45,9 @@ class User
       $email = _validate_email("email", "create_user");
       $password = password_hash(_validate_password("password", "create_user"), PASSWORD_DEFAULT);
 
-      $ifEmailExists = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
+      $if_email_exists = json_decode(surrealdb("SELECT * FROM user WHERE email=:email", ['email' => $email]), true)[1]['result'][0];
 
-      if (empty($ifEmailExists)) {
+      if (empty($if_email_exists)) {
         surrealdb('CREATE user SET first_name=:first_name, last_name=:last_name, email=:email, password=:password, is_admin=:is_admin', ['first_name' => $first_name, 'last_name' => $last_name, 'email' => $email, 'password' => $password, 'is_admin' => false]);
 
         // Set the user id in session
@@ -69,7 +69,7 @@ class User
   {
     try {
       $id = $_POST['id'];
-      $loggedInUser = $_SESSION['user_id'];
+      $logged_in_user = $_SESSION['user_id'];
       $form_name = "update_user";
 
       if (!isset($id)) {
@@ -77,7 +77,7 @@ class User
         exit();
       }
 
-      if ($id !== $loggedInUser) {
+      if ($id !== $logged_in_user) {
         header("Location: /php-exam/user/$id");
         exit();
       }
@@ -87,24 +87,24 @@ class User
       $last_name = _validate_last_name("last_name", $form_name, "error");
       $email = _validate_email("email", $form_name, "error");
 
-      $currentUserProfile = json_decode(surrealdb("SELECT first_name, last_name, email, image FROM user WHERE id = :id", ['id' => $id]), true)[1]['result'][0];
+      $current_user_profile = json_decode(surrealdb("SELECT first_name, last_name, email, image FROM user WHERE id = :id", ['id' => $id]), true)[1]['result'][0];
       $lets = [];
       $sets = [];
 
-      if ($currentUserProfile['first_name'] !== $first_name) {
+      if ($current_user_profile['first_name'] !== $first_name) {
         $lets['first_name'] = $first_name;
         array_push($sets, 'first_name = :first_name');
       }
 
-      if ($currentUserProfile['last_name'] !== $last_name) {
+      if ($current_user_profile['last_name'] !== $last_name) {
         $lets['last_name'] = $last_name;
         array_push($sets, 'last_name = :last_name');
       }
 
-      if ($currentUserProfile['email'] !== $email) {
-        $isEmailTaken = count(json_decode(surrealdb("SELECT email FROM user WHERE email = :email", ['email' => $email]), true)[1]['result']);
+      if ($current_user_profile['email'] !== $email) {
+        $is_email_taken = count(json_decode(surrealdb("SELECT email FROM user WHERE email = :email", ['email' => $email]), true)[1]['result']);
 
-        if ($isEmailTaken) {
+        if ($is_email_taken) {
           $_SESSION[_SESSION_FORM_ERRORS]['update_user']['error'] = "Email is already taken";
           header("Location: /php-exam/user/$id");
           exit();

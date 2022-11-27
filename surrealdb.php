@@ -17,7 +17,6 @@ function surrealdb($query, $lets = [], $host = 'http://127.0.0.1', $port = 8000)
     foreach ($lets as $key => $value) {
       $variables .= 'LET $' . $key . '="' . $value . '";';
     }
-    // echo $variables;
     // replace variables with place holders
     $query = str_replace(':', '$', $query);
     $query = $variables . $query;

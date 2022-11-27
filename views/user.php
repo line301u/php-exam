@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user = new User();
-$user = $user->getOne($_SESSION['user_id']);
+$user = $user->getOne($id);
 
 if (!$user) {
   header("Location: /php-exam/404");
@@ -19,21 +19,20 @@ if (!$user) {
 
 // Array destructuring 
 [
-  'id' => $id,
-  'first_name' => $firstName,
-  'last_name' => $lastName,
+  'first_name' => $first_name,
+  'last_name' => $last_name,
   'image' => $image,
   'email' => $email
 ] = $user;
 
-$title = "User - {$firstName} {$lastName}";
+$title = "User - {$first_name} {$last_name}";
 ?>
 
 <div class="d-flex justify-content-between align-items-center">
   <a href="/php-exam/home">Go back</a>
   <?php if ($id == $_SESSION['user_id'] || $_SESSION['is_admin']) : ?>
     <form action="/php-exam/delete-user" method="POST" class="flex-shrink-1 d-flex align-items-center gap-3">
-      <input class="id" name="id" type="hidden" value="<?= $id ?>" />
+      <input class="id" name="id" type="hidden" value="<?= out($id) ?>" />
       <button type="submit" class="btn btn-outline-danger delete_user">Delete user</button>
     </form>
   <?php endif ?>
@@ -54,27 +53,27 @@ $title = "User - {$firstName} {$lastName}";
 
 <article class="card mx-auto mt-4" style="width: 18rem;">
   <?php if ($image) : ?>
-    <img class="card-img-top" style="object-fit:cover; max-height:200px" src="../images/<?= $image ?>" alt="User profile picture">
+    <img class="card-img-top" style="object-fit:cover; max-height:200px" src="../images/<?= out($image) ?>" alt="User profile picture">
   <?php else : ?>
     <img class="card-img-top mh-100" src="../images/fallback-profile-pic.png" alt="User profile picture">
   <?php endif ?>
 
   <div class="card-body">
-    <h1 class="card-title"><?= "{$firstName} {$lastName}" ?></h1>
-    <a class="card-text d-block mb-3 link-dark" href="mailto:<?= $email ?>"><?= $email ?></a>
+    <h1 class="card-title"><?= out("{$first_name} {$last_name}") ?></h1>
+    <a class="card-text d-block mb-3 link-dark" href="mailto:<?= out($email) ?>"><?= out($email) ?></a>
 
     <?php if ($id == $_SESSION['user_id']) : ?>
       <h2 class="h5 mt-4 pt-3 border-top">Edit your profile</h2>
       <form class="d-flex flex-column" action="/php-exam/update-user" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $id ?>" />
+        <input type="hidden" name="id" value="<?= out($id) ?>" />
         <label class="form-label">First name
-          <input class="form-control d-inline" type="text" name="first_name" value="<?= $firstName ?>" />
+          <input class="form-control d-inline" type="text" name="first_name" value="<?= out($first_name) ?>" />
         </label>
         <label class="form-label">Last name
-          <input class="form-control d-inline" type="text" name="last_name" value="<?= $lastName ?>" />
+          <input class="form-control d-inline" type="text" name="last_name" value="<?= out($last_name) ?>" />
         </label>
         <label class="d-block form-label">Email
-          <input class="form-control d-inline" type="text" name="email" value="<?= $email ?>" />
+          <input class="form-control d-inline" type="text" name="email" value="<?= out($email) ?>" />
         </label>
         <label class="mb-4 d-block form-label">Profile picture
           <input class="form-control" type="file" name="image" />

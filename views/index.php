@@ -1,9 +1,8 @@
 <?php
-ini_set('display_errors', 1); // Remove later
-$title = "Welcome";
 require_once __DIR__ . '/header.php';
 require_once __DIR__ . '/../global_validation.php';
 
+$title = "Welcome";
 // check if user is logged in (if session is set)
 if (isset($_SESSION['user_id'])) {
   header('Location: /php-exam/home');
