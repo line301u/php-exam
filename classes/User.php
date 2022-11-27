@@ -1,24 +1,5 @@
 <?php
 
-class Model
-{
-  public function getOne()
-  {
-  }
-
-  public function getMany()
-  {
-  }
-}
-
-// class User extends Model {
-
-// }
-
-// class Property extends Model {
-
-// }
-
 class User
 {
   public function logIn()
