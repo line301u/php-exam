@@ -4,3 +4,5 @@
 
 - composer runserver
 - composer sql
+- composer exportdb
+- composer importdb
