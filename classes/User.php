@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../global_validation.php";
+
 class User
 {
   public function logIn()
@@ -154,6 +156,8 @@ class User
       }
 
       surrealdb("DELETE :id", ['id' => $id]);
+
+      $_SESSION[_SESSION_FORM_SUCCESSES]['delete_user']['success'] = "Successfully deleted user";
 
       if ($_SESSION['is_admin']) {
         header("Location: /php-exam/home");

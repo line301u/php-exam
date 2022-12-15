@@ -13,12 +13,9 @@
 <body class="position-relative min-vh-100 pb-5">
     <main class="container">
 
-        <?php
-        if (isset($_SESSION['name'])) { ?>
+        <?php if (isset($_SESSION['name'])) : ?>
             <section class="pt-4 d-flex align-items-center justify-content-between flex-row-reverse gap-3 mb-4 border-bottom pb-3">
                 <a href="/php-exam/log-out" class="btn btn-outline-dark">Log out</a>
                 <p class="m-0 h5"><?= out('Welcome ' . $_SESSION['name']); ?></p>
             </section>
-        <?php
-        }
-        ?>
+        <?php endif ?>

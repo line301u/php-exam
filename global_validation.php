@@ -127,10 +127,6 @@ function _validate_image(string $input_name, string $form_name, string $error_me
         exit();
     }
 
-    $item_image_temp_name = $_FILES[$input_name]["tmp_name"]; // C:\xampp\tmp\php791.tmp || C:\xampp\tmp\php5245.tmp
-    $target_dir = "./images/";
-    $target_file = $target_dir . basename($_FILES[$input_name]["name"]);
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION)); // just reads the extension of the file
     $image_mime = mime_content_type($_FILES[$input_name]["tmp_name"]); // reads the mime inside the file
     $accepted_image_formats = ['image/png', 'image/jpeg'];
 
